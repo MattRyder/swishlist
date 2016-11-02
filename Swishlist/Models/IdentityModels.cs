@@ -29,5 +29,7 @@ namespace Swishlist.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Swishlist.Models.Wishlist> Wishlists { get; set; }
     }
 }
