@@ -114,6 +114,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="Vereyon.Web.FlashMessage, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -182,6 +186,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\WishlistItemsController.cs" />
     <Compile Include="Controllers\WishlistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,13 +195,26 @@
     <Compile Include="Migrations\201611022221501_InitialMigration.Designer.cs">
       <DependentUpon>201611022221501_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611022226281_CreateWishlist.cs" />
-    <Compile Include="Migrations\201611022226281_CreateWishlist.Designer.cs">
-      <DependentUpon>201611022226281_CreateWishlist.cs</DependentUpon>
+    <Compile Include="Migrations\201611030042261_CreateWishlist.cs" />
+    <Compile Include="Migrations\201611030042261_CreateWishlist.Designer.cs">
+      <DependentUpon>201611030042261_CreateWishlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611030100152_AddNameAndDescriptionToWishlist.cs" />
+    <Compile Include="Migrations\201611030100152_AddNameAndDescriptionToWishlist.Designer.cs">
+      <DependentUpon>201611030100152_AddNameAndDescriptionToWishlist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611062028233_AddWishlistCollectionToUser.cs" />
+    <Compile Include="Migrations\201611062028233_AddWishlistCollectionToUser.Designer.cs">
+      <DependentUpon>201611062028233_AddWishlistCollectionToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611072248033_AddOwnerToWishlist.cs" />
+    <Compile Include="Migrations\201611072248033_AddOwnerToWishlist.Designer.cs">
+      <DependentUpon>201611072248033_AddOwnerToWishlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmazonRegistry.cs" />
+    <Compile Include="Models\EmailSender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Wishlist.cs" />
@@ -264,6 +282,11 @@
     <Content Include="Views\Wishlists\Details.cshtml" />
     <Content Include="Views\Wishlists\Edit.cshtml" />
     <Content Include="Views\Wishlists\Index.cshtml" />
+    <Content Include="Views\WishlistItems\Create.cshtml" />
+    <Content Include="Views\WishlistItems\Delete.cshtml" />
+    <Content Include="Views\WishlistItems\Details.cshtml" />
+    <Content Include="Views\WishlistItems\Edit.cshtml" />
+    <Content Include="Views\WishlistItems\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -280,8 +303,17 @@
     <EmbeddedResource Include="Migrations\201611022221501_InitialMigration.resx">
       <DependentUpon>201611022221501_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611022226281_CreateWishlist.resx">
-      <DependentUpon>201611022226281_CreateWishlist.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611030042261_CreateWishlist.resx">
+      <DependentUpon>201611030042261_CreateWishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611030100152_AddNameAndDescriptionToWishlist.resx">
+      <DependentUpon>201611030100152_AddNameAndDescriptionToWishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611062028233_AddWishlistCollectionToUser.resx">
+      <DependentUpon>201611062028233_AddWishlistCollectionToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611072248033_AddOwnerToWishlist.resx">
+      <DependentUpon>201611072248033_AddOwnerToWishlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

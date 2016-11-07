@@ -17,8 +17,11 @@
         <dd>
             @Html.DisplayFor(model => model.WishlistToken)
         </dd>
-
     </dl>
+
+    <h4>Items</h4>
+    <hr />
+    @Html.Partial("~/Views/WishlistItems/_Index.cshtml", Model.Items);
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |

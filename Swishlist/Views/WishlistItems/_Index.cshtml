@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Swishlist.Models.WishlistItem>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (Swishlist.Models.WishlistItem item in Model) {
+    <div class="row">
+        <div class="col-xs-2">
+            <img src="@item.ImageUrl" alt="@item.Name", class="img-responsive" />
+        </div>
+
+        <div class="col-xs-10">
+            <div class="row">
+                <h2>
+                    <a href="@item.URL">
+                        @item.Name
+                    </a>
+                    <small>ASIN: #@item.Reference</small>
+                </h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12"><p>@item.Description</p></div>
+            </div>
+            
+            @{
+                if (item.ReservingUser == null)
+                {
+                    <div class="row">
+                        @Html.ActionLink("Reserve", "Reserve", "WishlistItems", new { id = item.ID }, new { @class = "btn btn-default pull-right" })
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+}

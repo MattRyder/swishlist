@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Swishlist.Models
 {
@@ -12,6 +9,10 @@ namespace Swishlist.Models
         public string ImageUrl { get; set; }
         public string Description { get; set; }
         public string URL { get; set; }
+
+        public string Reference { get; set; }
+
+        public virtual Wishlist Wishlist { get; set; }
         public virtual ApplicationUser ReservingUser { get; set; }
     }
 }

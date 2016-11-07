@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Swishlist.Models;
 
+using Vereyon.Web;
+
 namespace Swishlist.Controllers
 {
     [Authorize]
@@ -79,6 +81,7 @@ namespace Swishlist.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    FlashMessage.Confirmation(string.Format("Successfully logged in, welcome back to Swishlist, {0}", User.Identity.Name));
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

@@ -15,6 +15,8 @@ namespace Swishlist.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        private const string PARAMS_WHITELIST = "ID,Name,Description,WishlistToken";
+
         // GET: Wishlists
         public ActionResult Index()
         {
@@ -30,13 +32,11 @@ namespace Swishlist.Controllers
             }
             Wishlist wishlist = db.Wishlists.Find(id);
 
-            const string amazonRegistryUrl = "https://www.amazon.co.uk/gp/registry/wishlist/{0}/ref=cm_wl_list_o_1?";
-            HtmlDocument pageHtml = new HtmlWeb().Load(string.Format(amazonRegistryUrl, wishlist.WishlistToken));
 
-            AmazonRegistry registry = new AmazonRegistry(pageHtml);
-            if (registry.Parse())
+            AmazonRegistry registry = new AmazonRegistry(wishlist);
+            if(registry.Parse())
             {
-
+                db.SaveChanges();
             }
 
             if (wishlist == null)
@@ -57,7 +57,7 @@ namespace Swishlist.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,WishlistToken")] Wishlist wishlist)
+        public ActionResult Create([Bind(Include = PARAMS_WHITELIST)] Wishlist wishlist)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Swishlist.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,WishlistToken")] Wishlist wishlist)
+        public ActionResult Edit([Bind(Include = PARAMS_WHITELIST)] Wishlist wishlist)
         {
             if (ModelState.IsValid)
             {

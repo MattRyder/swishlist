@@ -7,13 +7,13 @@ namespace Swishlist.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateWishlist : IMigrationMetadata
+    public sealed partial class AddWishlistCollectionToUser : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateWishlist));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddWishlistCollectionToUser));
         
         string IMigrationMetadata.Id
         {
-            get { return "201611022226281_CreateWishlist"; }
+            get { return "201611062028233_AddWishlistCollectionToUser"; }
         }
         
         string IMigrationMetadata.Source

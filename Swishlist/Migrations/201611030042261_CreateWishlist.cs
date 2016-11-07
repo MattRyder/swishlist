@@ -25,6 +25,7 @@ namespace Swishlist.Migrations
                         ImageUrl = c.String(),
                         Description = c.String(),
                         URL = c.String(),
+                        Reference = c.String(),
                         ReservingUser_Id = c.String(maxLength: 128),
                         Wishlist_ID = c.Int(),
                     })
