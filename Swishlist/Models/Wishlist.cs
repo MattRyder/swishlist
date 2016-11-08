@@ -20,7 +20,9 @@ namespace Swishlist.Models
         [Display(Name = "Wishlist Description")]
         public string Description { get; set; }
 
-        public virtual ApplicationUser Owner { get; set; }
+        public string UserID { get; set; }
+        
+        public virtual ApplicationUser User { get; set; }
 
         public virtual ICollection<WishlistItem> Items { get; set; }
 

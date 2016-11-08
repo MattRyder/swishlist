@@ -10,6 +10,7 @@ using Swishlist.Models;
 using Microsoft.AspNet.Identity;
 using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Vereyon.Web;
 
 namespace Swishlist.Controllers
 {
@@ -65,8 +66,7 @@ namespace Swishlist.Controllers
             wishlistItem.ReservingUser = userManager.FindById(User.Identity.GetUserId());
             db.SaveChanges();
 
-            new EmailSender().SendItemRemovedEmail(wishlistItem);
-
+            FlashMessage.Confirmation(string.Format("You have successfully reserved \"{0}\"", wishlistItem.Name));
             return RedirectToAction("Details", "Wishlists", new { id = wishlistItem.Wishlist.ID });
         }
 

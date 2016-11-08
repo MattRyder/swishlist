@@ -7,7 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Swishlist.Models;
+using Swishlist.Models.Extensions;
 using HtmlAgilityPack;
+using Vereyon.Web;
+using Microsoft.AspNet.Identity;
 
 namespace Swishlist.Controllers
 {
@@ -18,12 +21,15 @@ namespace Swishlist.Controllers
         private const string PARAMS_WHITELIST = "ID,Name,Description,WishlistToken";
 
         // GET: Wishlists
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Wishlists.ToList());
+            string userID = User.Identity.GetUserId<string>();
+            return View(db.Wishlists.Where(w => w.UserID.Equals(userID)).ToList());
         }
 
         // GET: Wishlists/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -31,6 +37,12 @@ namespace Swishlist.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Wishlist wishlist = db.Wishlists.Find(id);
+
+            if(wishlist.UserID.Equals(User.Identity.GetUserId()))
+            {
+                FlashMessage.Danger("You can't view your own Wishlist!");
+                return RedirectToAction("Index", "Home");
+            }
 
 
             AmazonRegistry registry = new AmazonRegistry(wishlist);
@@ -61,8 +73,20 @@ namespace Swishlist.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Wishlists.Add(wishlist);
-                db.SaveChanges();
+                ApplicationUser currentUser = User.Identity.GetCurrentUser();
+
+                if (currentUser != null)
+                {
+                    wishlist.UserID = User.Identity.GetUserId();
+                    db.Wishlists.Add(wishlist);
+                    db.SaveChanges();
+
+                    FlashMessage.Confirmation("Successfully registered your Wishlist");
+                } else
+                {
+                    FlashMessage.Danger("Not Logged In", "You must be logged in before creating a Wishlist");
+                }
+
                 return RedirectToAction("Index");
             }
 

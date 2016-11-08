@@ -4,6 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Security.Principal;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Swishlist.Models
 {
@@ -17,6 +21,9 @@ namespace Swishlist.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        // Name of the current User
+        public string Name { get; set; }
 
         public virtual ICollection<Wishlist> Wishlists { get; set; }
     }

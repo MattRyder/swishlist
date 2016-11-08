@@ -83,7 +83,10 @@ namespace Swishlist.Models
             {
                 for(int i = 0; i < removedItems.Count(); i++)
                 {
-                    wishlist.Items.Remove(removedItems.ElementAt(i));
+                    WishlistItem item = removedItems.ElementAt(i);
+                    if(wishlist.Items.Remove(item) && item.ReservingUser != null)
+                        new EmailSender().SendItemRemovedEmail(item);
+                    
                     dbChangesPending = true;
                 }    
             }

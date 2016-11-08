@@ -207,14 +207,19 @@
     <Compile Include="Migrations\201611062028233_AddWishlistCollectionToUser.Designer.cs">
       <DependentUpon>201611062028233_AddWishlistCollectionToUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201611072248033_AddOwnerToWishlist.cs" />
-    <Compile Include="Migrations\201611072248033_AddOwnerToWishlist.Designer.cs">
-      <DependentUpon>201611072248033_AddOwnerToWishlist.cs</DependentUpon>
+    <Compile Include="Migrations\201611080111461_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\201611080111461_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>201611080111461_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611080130272_SetUserIdOnWishlist.cs" />
+    <Compile Include="Migrations\201611080130272_SetUserIdOnWishlist.Designer.cs">
+      <DependentUpon>201611080130272_SetUserIdOnWishlist.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmazonRegistry.cs" />
     <Compile Include="Models\EmailSender.cs" />
+    <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Wishlist.cs" />
@@ -312,8 +317,11 @@
     <EmbeddedResource Include="Migrations\201611062028233_AddWishlistCollectionToUser.resx">
       <DependentUpon>201611062028233_AddWishlistCollectionToUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201611072248033_AddOwnerToWishlist.resx">
-      <DependentUpon>201611072248033_AddOwnerToWishlist.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611080111461_AddNameToApplicationUser.resx">
+      <DependentUpon>201611080111461_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611080130272_SetUserIdOnWishlist.resx">
+      <DependentUpon>201611080130272_SetUserIdOnWishlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
