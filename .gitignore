@@ -244,4 +244,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 *.map
-/Swishlist/WebSecrets.config
+/Swishlist/Web.Debug.config
