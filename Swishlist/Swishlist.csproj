@@ -339,7 +339,6 @@
     <Content Include="Views\Shared\_HeroLayout.cshtml" />
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutFooter.cshtml" />
-    <Content Include="WebSecrets.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
