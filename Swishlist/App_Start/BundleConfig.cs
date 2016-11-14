@@ -31,7 +31,7 @@ namespace Swishlist
                       "~/Scripts/site.js"
                 ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/CSS/bootstrap.css",
                       "~/Content/CSS/animate.css",
                       "~/Content/SCSS/Site.css"));
