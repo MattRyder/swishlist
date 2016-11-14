@@ -33,8 +33,11 @@ namespace Swishlist
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                       "~/Content/CSS/bootstrap.css",
-                      "~/Content/CSS/animate.css",
-                      "~/Content/SCSS/Site.css"));
+                      new CssRewriteUrlTransform()
+                  ).Include("~/Content/CSS/animate.css",
+                      new CssRewriteUrlTransform()
+                  ).Include("~/Content/SCSS/Site.css",
+                      new CssRewriteUrlTransform()));
         }
     }
 }
