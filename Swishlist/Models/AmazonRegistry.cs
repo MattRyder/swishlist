@@ -3,6 +3,7 @@ using Nager.AmazonProductAdvertising;
 using Nager.AmazonProductAdvertising.Model;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -31,8 +32,8 @@ namespace Swishlist.Models
             amazonClient = new AmazonWrapper(
                 new AmazonAuthentication()
                 {
-                    AccessKey = Environment.GetEnvironmentVariable("AMAZON_ACCESS_ID"),
-                    SecretKey = Environment.GetEnvironmentVariable("AMAZON_ACCESS_SECRET")
+                    AccessKey = ConfigurationManager.AppSettings["AmazonClientID"],
+                    SecretKey = ConfigurationManager.AppSettings["AmazonClientSecret"]
                 },
                 AmazonEndpoint.UK,
                 Environment.GetEnvironmentVariable("AMAZON_AFFILIATE_ID")

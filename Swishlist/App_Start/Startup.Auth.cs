@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Swishlist.Models;
+using System.Configuration;
 
 namespace Swishlist
 {
@@ -52,8 +53,8 @@ namespace Swishlist
 
             app.UseTwitterAuthentication(new Microsoft.Owin.Security.Twitter.TwitterAuthenticationOptions()
             {
-                ConsumerKey = Environment.GetEnvironmentVariable("TWITTER_CLIENT_ID"),
-                ConsumerSecret = Environment.GetEnvironmentVariable("TWITTER_CLIENT_SECRET"),
+                ConsumerKey = ConfigurationManager.AppSettings["TwitterClientID"],
+                ConsumerSecret = ConfigurationManager.AppSettings["TwitterClientSecret"],
                 BackchannelCertificateValidator = new Microsoft.Owin.Security.CertificateSubjectKeyIdentifierValidator(new[]
                 {
                     "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
