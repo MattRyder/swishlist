@@ -1,10 +1,8 @@
-﻿@using Vereyon.Web;
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 @Html.Partial("_LayoutHead")
 <body>
-    <div class="navbar animated" id="navbar-generic">
+    <div class="navbar animated" id="navbar-home">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -24,12 +22,21 @@
     </div>
     <div class="container-fluid">
 
-        <div class="container" id="body-content">
-            @Html.RenderFlashMessages()
+        <div id="hero">
+            <h2>SwishList</h2>
+            <p>Better gift-giving, less consumerism, some more text here</p>
+            <ul class="button-set">
+                <li><a class="call-to-action" href="#">Sign Up</a></li>
+                <li><a href="#">Learn More</a></li>
+            </ul>
+        </div>
+
+        <div class="container" id="body-hero">
             @RenderBody()
         </div>
 
         @Html.Partial("_LayoutFooter")
+        
     </div>
 
     @Scripts.Render("~/bundles/jquery")

@@ -23,9 +23,18 @@ namespace Swishlist
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/scrollmonitor").Include(
+                      "~/Scripts/scrollMonitor.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/site").Include(
+                      "~/Scripts/site.js"
+                ));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/CSS/bootstrap.css",
+                      "~/Content/CSS/animate.css",
+                      "~/Content/SCSS/Site.css"));
         }
     }
 }

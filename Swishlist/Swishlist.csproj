@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -59,6 +63,18 @@
     </Reference>
     <Reference Include="Nager.ArticleNumber, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nager.ArticleNumber.1.0.1\lib\net45\Nager.ArticleNumber.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Rest, Version=1.1.1.35040, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Rest.1.1.1\lib\net40-client\Spring.Rest.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Social.Core, Version=1.0.1.35140, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Social.Core.1.0.1\lib\net40-client\Spring.Social.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Spring.Social.Twitter, Version=1.0.1.36140, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spring.Social.Twitter.1.0.1\lib\net40-client\Spring.Social.Twitter.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -116,6 +132,10 @@
     </Reference>
     <Reference Include="Vereyon.Web.FlashMessage, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease">
@@ -180,6 +200,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\FontAwesomeBundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -215,6 +236,10 @@
     <Compile Include="Migrations\201611080130272_SetUserIdOnWishlist.Designer.cs">
       <DependentUpon>201611080130272_SetUserIdOnWishlist.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611131159419_AddCachedSlugToWishlist.cs" />
+    <Compile Include="Migrations\201611131159419_AddCachedSlugToWishlist.Designer.cs">
+      <DependentUpon>201611131159419_AddCachedSlugToWishlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AmazonRegistry.cs" />
@@ -228,18 +253,35 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="App_Readme\Spring.Rest.txt" />
+    <Content Include="App_Readme\Spring.Social.Core.txt" />
+    <Content Include="App_Readme\Spring.Social.Twitter.txt" />
+    <Content Include="Content\CSS\animate.css" />
+    <Content Include="Content\CSS\bootstrap.css" />
+    <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\fontawesome\font-awesome.css" />
+    <Content Include="Content\fontawesome\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Images\banner.jpg" />
+    <Content Include="Content\Images\overlay.png" />
+    <Content Include="Content\SCSS\Site.css">
+      <DependentUpon>Site.scss</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\SCSS\Site.scss" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.scrollwatch.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -247,6 +289,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\scrollMonitor.js" />
+    <Content Include="Scripts\site.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -292,6 +336,9 @@
     <Content Include="Views\WishlistItems\Details.cshtml" />
     <Content Include="Views\WishlistItems\Edit.cshtml" />
     <Content Include="Views\WishlistItems\_Index.cshtml" />
+    <Content Include="Views\Shared\_HeroLayout.cshtml" />
+    <Content Include="Views\Shared\_LayoutHead.cshtml" />
+    <Content Include="Views\Shared\_LayoutFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611080130272_SetUserIdOnWishlist.resx">
       <DependentUpon>201611080130272_SetUserIdOnWishlist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611131159419_AddCachedSlugToWishlist.resx">
+      <DependentUpon>201611131159419_AddCachedSlugToWishlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
