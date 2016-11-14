@@ -18,7 +18,7 @@ namespace Swishlist.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        private const string PARAMS_WHITELIST = "ID,Name,Description,WishlistToken";
+        private const string PARAMS_WHITELIST = "ID,Name,Description,WishlistToken,UserID";
 
         // GET: Wishlists
         [Authorize]
@@ -41,9 +41,8 @@ namespace Swishlist.Controllers
             if(wishlist.UserID.Equals(User.Identity.GetUserId()))
             {
                 FlashMessage.Danger("You can't view your own Wishlist!");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Wishlists");
             }
-
 
             AmazonRegistry registry = new AmazonRegistry(wishlist);
             if(registry.Parse())
@@ -56,6 +55,24 @@ namespace Swishlist.Controllers
                 return HttpNotFound();
             }
             return View(wishlist);
+        }
+
+        [HttpGet]
+        public ActionResult Share(string cachedSlug)
+        {
+            if (string.IsNullOrEmpty(cachedSlug))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Wishlist wishlist = db.Wishlists.Where(w => w.CachedSlug == cachedSlug).First();
+
+            if(wishlist == null)
+            {
+                return HttpNotFound();
+            }
+
+            return RedirectToAction("Details", new { id = wishlist.ID });
         }
 
         // GET: Wishlists/Create

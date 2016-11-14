@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Swishlist.Models;
 
 using Vereyon.Web;
+using Swishlist.Models.Extensions;
 
 namespace Swishlist.Controllers
 {
@@ -154,7 +155,7 @@ namespace Swishlist.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Name = model.Name, Email = model.Email };
+                var user = new ApplicationUser { Name = model.Name, UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -336,6 +337,7 @@ namespace Swishlist.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    FlashMessage.Confirmation(string.Format("Welcome back, {0}!", User.Identity.GetCurrentUser().Name));
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

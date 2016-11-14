@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace Swishlist.Models
 {
@@ -21,6 +22,11 @@ namespace Swishlist.Models
         public string Description { get; set; }
 
         public string UserID { get; set; }
+
+        [Required]
+        [StringLength(250, MinimumLength = 1)]
+        [Index(IsUnique = true)]
+        public string CachedSlug { get; set; }
         
         public virtual ApplicationUser User { get; set; }
 
