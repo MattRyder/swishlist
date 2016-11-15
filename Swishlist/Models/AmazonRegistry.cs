@@ -36,7 +36,7 @@ namespace Swishlist.Models
                     SecretKey = ConfigurationManager.AppSettings["AmazonClientSecret"]
                 },
                 AmazonEndpoint.UK,
-                Environment.GetEnvironmentVariable("AMAZON_AFFILIATE_ID")
+                ConfigurationManager.AppSettings["AmazonAffiliateID"]
             );
         }
 
