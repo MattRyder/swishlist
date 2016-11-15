@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -18,12 +19,12 @@ namespace Swishlist.Models
         {
             emailClient = new SmtpClient()
             {
-                Host = "127.0.0.1",
+                Host = ConfigurationManager.AppSettings["SmtpHost"],
                 Port = 25,
                 Credentials = new NetworkCredential()
                 {
-                    UserName = "username",
-                    Password = "password"
+                    UserName = ConfigurationManager.AppSettings["SmtpUsername"],
+                    Password = ConfigurationManager.AppSettings["SmtpPassword"]
                 }
             };
         }

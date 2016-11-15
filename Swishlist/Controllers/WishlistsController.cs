@@ -11,6 +11,7 @@ using Swishlist.Models.Extensions;
 using HtmlAgilityPack;
 using Vereyon.Web;
 using Microsoft.AspNet.Identity;
+using System.Text.RegularExpressions;
 
 namespace Swishlist.Controllers
 {
@@ -38,11 +39,16 @@ namespace Swishlist.Controllers
             }
             Wishlist wishlist = db.Wishlists.Find(id);
 
-            if(wishlist.UserID.Equals(User.Identity.GetUserId()))
+            if (wishlist == null)
             {
-                FlashMessage.Danger("You can't view your own Wishlist!");
-                return RedirectToAction("Index", "Wishlists");
+              return HttpNotFound();
             }
+
+            //if (wishlist.UserID.Equals(User.Identity.GetUserId()))
+            //{
+            //    FlashMessage.Danger("You can't view your own Wishlist!");
+            //    return RedirectToAction("Index", "Wishlists");
+            //}
 
             AmazonRegistry registry = new AmazonRegistry(wishlist);
             if(registry.Parse())
@@ -50,10 +56,7 @@ namespace Swishlist.Controllers
                 db.SaveChanges();
             }
 
-            if (wishlist == null)
-            {
-                return HttpNotFound();
-            }
+  
             return View(wishlist);
         }
 
@@ -88,6 +91,18 @@ namespace Swishlist.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = PARAMS_WHITELIST)] Wishlist wishlist)
         {
+            int cachedSlugIndex = 0;
+            do
+            {
+                wishlist.CachedSlug = Regex.Replace(wishlist.Name, "[^A-z0-9]", "");
+                if (cachedSlugIndex > 1)
+                    wishlist.CachedSlug += "-" + cachedSlugIndex;
+                if (db.Wishlists.FirstOrDefault(w => w.CachedSlug.Equals(wishlist.CachedSlug)) == null)
+                    break;
+            } while (cachedSlugIndex < 64);
+
+            ModelState.Remove("CachedSlug");
+
             if (ModelState.IsValid)
             {
                 ApplicationUser currentUser = User.Identity.GetCurrentUser();
