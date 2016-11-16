@@ -82,7 +82,7 @@ namespace Swishlist.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    FlashMessage.Confirmation(string.Format("Successfully logged in, welcome back to Swishlist, {0}", User.Identity.Name));
+                    FlashMessage.Confirmation(string.Format("Successfully logged in, welcome back to SwishList"));
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -337,7 +337,6 @@ namespace Swishlist.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    FlashMessage.Confirmation(string.Format("Welcome back, {0}!", User.Identity.GetCurrentUser().Name));
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

@@ -4,7 +4,10 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+
+<div class="content-block content-block-padded">
+
+<h2>Start a new Wishlist</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +15,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Wishlist</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -50,6 +52,8 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+</div>
+
 </div>
 
 @section Scripts {

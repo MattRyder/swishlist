@@ -90,8 +90,12 @@ html, body {
     border-radius: 6px;
     box-shadow: 0 2px 0 0 #E5E5E5;
     background-color: #FFF;
-    margin: 0 0 2em 0;
+    margin-bottom: 2em; }
+  #body-content .content-block-padded, #body-hero .content-block-padded {
     padding: 3em; }
+  #body-content .content-block-list, #body-hero .content-block-list {
+    padding-top: 15px;
+    padding-bottom: 15px; }
 
 #body-hero {
   margin-top: -14em; }

@@ -125,8 +125,16 @@
         border-radius: 6px;
         box-shadow: 0 2px 0 0 #E5E5E5;
         background-color: #FFF;
-        margin: 0 0 2em 0;
-        padding: 3em;
+        margin-bottom: 2em;
+    }
+
+    .content-block-padded {
+      padding: 3em;
+    }
+
+    .content-block-list {
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
 }
 
