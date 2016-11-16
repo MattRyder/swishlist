@@ -19,7 +19,7 @@
                     <li>@Html.ActionLink("Wishlists", "Index", "Wishlists")</li>
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Shopping List", "WishlistItems", "Reserved")</li>
+                        <li>@Html.ActionLink("Shopping List", "Reserved", "WishlistItems")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

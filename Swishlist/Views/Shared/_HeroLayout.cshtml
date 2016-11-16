@@ -15,6 +15,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Wishlists", "Index", "Wishlists")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Shopping List", "Reserved", "WishlistItems")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
