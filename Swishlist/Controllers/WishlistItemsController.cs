@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Vereyon.Web;
+using Swishlist.Models.Extensions;
 
 namespace Swishlist.Controllers
 {
@@ -148,6 +149,14 @@ namespace Swishlist.Controllers
             db.WishlistItems.Remove(wishlistItem);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Reserved()
+        {
+            ApplicationUser currentUser = User.Identity.GetCurrentUser();
+            List<WishlistItem> reservedWishlistItems = db.WishlistItems.Where(wli => wli.ReservingUser.Id.Equals(currentUser.Id)).ToList();
+            return View(reservedWishlistItems);
         }
 
         protected override void Dispose(bool disposing)

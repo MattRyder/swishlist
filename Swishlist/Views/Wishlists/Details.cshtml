@@ -2,28 +2,21 @@
 
 @{
     ViewBag.Title = "Details";
+
+    ViewBag.HeroTitle = Model.Name;
+    ViewBag.HeroSubtitle = "from " + Model.User.Name;
+    Layout = "~/Views/Shared/_HeroLayout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Wishlist</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.WishlistToken)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WishlistToken)
-        </dd>
-    </dl>
-
-    <h4>Items</h4>
-    <hr />
-    @Html.Partial("~/Views/WishlistItems/_Index.cshtml", Model.Items);
+<div class="content-block content-block-padded text-center">
+  <h2>
+    @Model.Name
+    <small>@Model.User.Name</small>
+  </h2>
+  <h4>@Model.Description</h4>
+  <p>
+    @Html.DisplayFor(model => model.WishlistToken)
+  </p>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+@Html.Partial("~/Views/WishlistItems/_Index.cshtml", Model.Items)

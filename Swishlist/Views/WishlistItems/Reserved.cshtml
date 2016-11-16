@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Swishlist.Models.WishlistItem>
+
+@{
+    ViewBag.Title = "Your Reserved Items";
+}
+
+<div class="content-block content-block-padded">
+  <h2>Your Reserved Items</h2>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="content-block content-block-padded">
+     @Html.Partial("_ItemDisplay", item)
+    </div>
+}

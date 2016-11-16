@@ -337,6 +337,8 @@
     <Content Include="Views\Shared\_HeroLayout.cshtml" />
     <Content Include="Views\Shared\_LayoutHead.cshtml" />
     <Content Include="Views\Shared\_LayoutFooter.cshtml" />
+    <Content Include="Views\WishlistItems\Reserved.cshtml" />
+    <Content Include="Views\WishlistItems\_ItemDisplay.cshtml" />
     <None Include="Web.secrets.config" />
   </ItemGroup>
   <ItemGroup>
